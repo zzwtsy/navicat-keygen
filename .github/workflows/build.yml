@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  navicat-keygen-x86:
+  navicat-keygen-x86-win:
     runs-on: windows-latest
 #     if: "startsWith(github.event.head_commit.message, '[build]')"
     steps:
@@ -30,10 +30,10 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: navicat-keygen-x86.zip
+          name: navicat-keygen-x86-win.zip
           path: bin/x86-Release/*.exe
 
-  navicat-keygen-x64:
+  navicat-keygen-x64-win:
     runs-on: windows-latest
 #     if: "startsWith(github.event.head_commit.message, '[build]')"
     steps:
@@ -58,5 +58,25 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: navicat-keygen-x64.zip
+          name: navicat-keygen-x64-win.zip
           path: bin/x64-Release/*.exe
+          
+  navicat-keygen-x64-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install dependencies
+        run: apt-get install -y cmake libfmt-dev libssl-dev rapidjson-dev
+      - name: Clone
+        run: git clone -b linux --single-branch https://notabug.org/doublesine/navicat-keygen.git
+      - name: Build
+        run: |
+          cd navicat-keygen
+          mkdir build
+          cd build
+          cmake -DCMAKE_BUILD_TYPE=Release ..
+          cmake --build . -- -j4
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: navicat-keygen-linux.zip
+          path: build/*

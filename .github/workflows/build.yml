@@ -17,7 +17,7 @@ jobs:
       - name: Clone source
         uses: actions/checkout@v2
       - name: clone
-        run: git clone https://notabug.org/doublesine/navicat-keygen.git
+        run: git clone -b windows --single-branch https://notabug.org/doublesine/navicat-keygen.git
 
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v1.1

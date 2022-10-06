@@ -61,7 +61,7 @@ jobs:
           name: navicat-keygen-x64-win.zip
           path: bin/x64-Release/*.exe
           
-  navicat-keygen-x64-linux:
+  navicat-keygen-linux:
     runs-on: ubuntu-latest
     steps:
       - name: Install dependencies

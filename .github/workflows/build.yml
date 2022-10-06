@@ -65,7 +65,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install dependencies
-        run: apt-get install -y cmake libfmt-dev libssl-dev rapidjson-dev
+        run: sudo apt-get install -y cmake libfmt-dev libssl-dev rapidjson-dev
       - name: Clone
         run: git clone -b linux --single-branch https://notabug.org/doublesine/navicat-keygen.git
       - name: Build

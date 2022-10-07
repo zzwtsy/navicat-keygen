@@ -11,7 +11,7 @@ env:
 jobs:
   navicat-keygen-x86-win:
     runs-on: windows-latest
-    if: env.WIN_X86 == 'true'
+    if: $WIN_X86 == 'true'
     steps:
       - name: Install dependencies
         run: |
@@ -44,7 +44,7 @@ jobs:
 
   navicat-keygen-x64-win:
     runs-on: windows-latest
-    if: env.WIN_X64 == 'true'
+    if: $WIN_X64 == 'true'
     steps:
       - name: Install dependencies
         run: |
@@ -76,7 +76,7 @@ jobs:
           
   navicat-keygen-linux:
     runs-on: ubuntu-latest
-    if: env.LINUX == 'true'
+    if: $LINUX == 'true'
     steps:
       - name: Install dependencies
         run: sudo apt-get install -y cmake libfmt-dev libssl-dev rapidjson-dev

@@ -86,4 +86,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: navicat-keygen-linux.zip
-          path: ./*
+          path: ./navicat-*

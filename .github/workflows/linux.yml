@@ -2,9 +2,6 @@ name: linux builds
 on: 
   workflow_dispatch:
 
-env:
-  REPO_URL: https://notabug.org/doublesine/navicat-keygen.git
-
 jobs:        
   navicat-keygen-linux:
     runs-on: ubuntu-latest
@@ -12,7 +9,7 @@ jobs:
       - name: Install dependencies
         run: sudo apt-get install -y cmake libfmt-dev libssl-dev rapidjson-dev
       - name: Clone
-        run: git clone -b linux --single-branch $REPO_URL
+        run: git clone -b linux --single-branch https://notabug.org/doublesine/navicat-keygen.git
       - name: Build
         run: |
           cd navicat-keygen

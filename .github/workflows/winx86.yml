@@ -32,5 +32,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: navicat-keygen-x86-win.zip
-          path: ./*
-#           path: bin/x86-Release/*.exe
+#           path: ./*
+          path: ./navicat-keygen/bin/x86-Release/*.exe

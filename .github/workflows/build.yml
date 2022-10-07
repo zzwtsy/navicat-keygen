@@ -16,7 +16,8 @@ jobs:
           vcpkg install unicorn:x86-windows-static
       - name: Clone source
         uses: actions/checkout@v2
-      - name: clone
+        
+      - name: Clone
         run: git clone -b windows --single-branch https://notabug.org/doublesine/navicat-keygen.git
 
       - name: Add msbuild to PATH
@@ -24,6 +25,7 @@ jobs:
 
       - name: Build project
         run: |
+          cd navicat-keygen
           vcpkg integrate install
           msbuild navicat-keygen.sln /p:Configuration=Release /p:Platform=x86
       
@@ -47,11 +49,15 @@ jobs:
       - name: Clone source
         uses: actions/checkout@v2
 
+      - name: Clone
+        run: git clone -b windows --single-branch https://notabug.org/doublesine/navicat-keygen.git
+      
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v1.1
 
       - name: Build project
         run: |
+          cd navicat-keygen
           vcpkg integrate install
           msbuild navicat-keygen.sln /p:Configuration=Release /p:Platform=x64
       

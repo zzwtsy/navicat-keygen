@@ -1,0 +1,28 @@
+name: linux builds
+on: 
+  workflow_dispatch:
+
+env:
+  REPO_URL: https://notabug.org/doublesine/navicat-keygen.git
+
+jobs:        
+  navicat-keygen-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install dependencies
+        run: sudo apt-get install -y cmake libfmt-dev libssl-dev rapidjson-dev
+      - name: Clone
+        run: git clone -b linux --single-branch $REPO_URL
+      - name: Build
+        run: |
+          cd navicat-keygen
+          mkdir build
+          cd build
+          cmake -DCMAKE_BUILD_TYPE=Release ..
+          cmake --build . -- -j4
+          ls
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: navicat-keygen-linux.zip
+          path: ./build/navicat-*

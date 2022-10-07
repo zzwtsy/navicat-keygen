@@ -1,0 +1,39 @@
+name: winx86 builds
+on: 
+  workflow_dispatch:
+
+env:
+  REPO_URL: https://notabug.org/doublesine/navicat-keygen.git
+
+jobs:
+  navicat-keygen-x86-win:
+    runs-on: windows-latest
+    steps:
+      - name: Install dependencies
+        run: |
+          vcpkg install fmt:x86-windows-static
+          vcpkg install openssl:x86-windows-static
+          vcpkg install rapidjson:x86-windows-static
+          vcpkg install keystone:x86-windows-static
+          vcpkg install unicorn:x86-windows-static
+      - name: Clone source
+        uses: actions/checkout@v2
+        
+      - name: Clone
+        run: git clone -b windows --single-branch $REPO_URL
+
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1.1
+
+      - name: Build project
+        run: |
+          cd navicat-keygen
+          vcpkg integrate install
+          msbuild navicat-keygen.sln /p:Configuration=Release /p:Platform=x86
+      
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: navicat-keygen-x86-win.zip
+          path: ./*
+#           path: bin/x86-Release/*.exe

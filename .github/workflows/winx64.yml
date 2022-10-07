@@ -2,9 +2,6 @@ name: winx64 builds
 on: 
   workflow_dispatch:
 
-env:
-  REPO_URL: https://notabug.org/doublesine/navicat-keygen.git
-
 jobs:
   navicat-keygen-x64-win:
     runs-on: windows-latest
@@ -20,7 +17,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Clone
-        run: git clone -b windows --single-branch $REPO_URL
+        run: git clone -b windows --single-branch https://notabug.org/doublesine/navicat-keygen.git
       
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v1.1
@@ -35,5 +32,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: navicat-keygen-x64-win.zip
-          path: bin/x64-Release/*.exe
+          path: ./navicat-keygen/bin/x64-Release/*.exe
           

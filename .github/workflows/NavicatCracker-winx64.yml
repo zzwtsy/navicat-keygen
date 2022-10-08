@@ -32,4 +32,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: NavicatCracker-x64-win.zip
-          path: ./NavicatCracker/bin/x64-Release/NEW/*.exe
+          path: ./NavicatCracker/bin/x64-Release/New/*.exe

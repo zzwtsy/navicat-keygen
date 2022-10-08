@@ -24,7 +24,7 @@ jobs:
 
       - name: Build project
         run: |
-          cd navicat-keygen
+          cd NavicatCracker
           vcpkg integrate install
           msbuild navicat-keygen.sln /p:Configuration=Release /p:Platform=x64
       

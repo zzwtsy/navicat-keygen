@@ -30,10 +30,10 @@ jobs:
         run: brew install openssl capstone keystone rapidjson libplist
       - name: Clone
         run: git clone -b mac --single-branch https://notabug.org/doublesine/navicat-keygen.git
-      - name: Not Found -lplist++
+      - name: Fix Not Found -lplist++
         run: |
           cd navicat-keygen
-          sed -i 's/-lplist++/-lplist++-2.0/g' Makefile
+          sed -i '.back' 's/-lplist++/-lplist++-2.0/g' Makefile
           cat Makefile
       - name: Build
         run: |

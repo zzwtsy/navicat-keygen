@@ -23,3 +23,61 @@ jobs:
         with:
           name: navicat-keygen-linux.zip
           path: ./navicat-keygen/build/navicat-*
+  navicat-keygen-macos:
+    runs-on: macos-latest
+    steps:
+      - name: Install dependencies
+        run: brew install openssl capstone keystone rapidjson libplist
+      - name: Clone
+        run: git clone -b mac --single-branch https://notabug.org/doublesine/navicat-keygen.git
+      - name: Build
+        run: |
+          cd navicat-keygen
+          make all
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: navicat-keygen-mac.zip
+          path: ./navicat-keygen/build/navicat-*
+  navicat-keygen-x64-win:
+    runs-on: windows-latest
+    steps:
+      - name: Install dependencies
+        run: |
+          vcpkg install fmt:x64-windows-static
+          vcpkg install openssl:x64-windows-static
+          vcpkg install rapidjson:x64-windows-static
+          vcpkg install keystone:x64-windows-static
+          vcpkg install unicorn:x64-windows-static
+      - name: Clone source
+        uses: actions/checkout@v2
+
+      - name: Clone
+        run: git clone -b windows --single-branch https://notabug.org/doublesine/navicat-keygen.git
+      
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1.1
+
+      - name: Build x64 project
+        run: |
+          cd navicat-keygen
+          vcpkg integrate install
+          msbuild navicat-keygen.sln /p:Configuration=Release /p:Platform=x64
+      
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: navicat-keygen-x64-win.zip
+          path: ./navicat-keygen/bin/x64-Release/*.exe
+
+      - name: Build x86 project
+        run: |
+          cd navicat-keygen
+          vcpkg integrate install
+          msbuild navicat-keygen.sln /p:Configuration=Release /p:Platform=x86
+      
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: navicat-keygen-x86-win.zip
+          path: ./navicat-keygen/bin/x86-Release/*.exe       

@@ -43,7 +43,7 @@ jobs:
         with:
           name: navicat-keygen-mac.zip
           path: ./navicat-keygen/build/navicat-*
-#   navicat-keygen-x64-win:
+#   navicat-keygen-win:
 #     runs-on: windows-latest
 #     steps:
 #       - name: Install dependencies
@@ -76,8 +76,6 @@ jobs:
 
 #       - name: Build x86 project
 #         run: |
-#           cd navicat-keygen
-#           vcpkg integrate install
 #           msbuild navicat-keygen.sln /p:Configuration=Release /p:Platform=x86
       
 #       - name: Upload artifacts

@@ -37,6 +37,7 @@ jobs:
           cat Makefile
       - name: Build
         run: |
+          cd navicat-keygen
           make all
       - name: Upload artifacts
         uses: actions/upload-artifact@v3

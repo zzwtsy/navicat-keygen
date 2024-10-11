@@ -80,7 +80,7 @@ jobs:
           msbuild navicat-keygen.sln /p:Configuration=Release /p:Platform=x86
       
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: navicat-keygen-x86-win.zip
           path: ./navicat-keygen/bin/x86-Release/*.exe       
